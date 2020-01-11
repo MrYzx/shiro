@@ -1,0 +1,17 @@
+//1.layui 的使用
+layui.use(['layer', 'form'], function(){
+    var layer = layui.layer
+        ,form = layui.form;
+    layer.msg('Hello LayUI');
+});
+
+//2.layui 中关闭父页面的弹出框
+var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+parent.layer.close(index); //再执行关闭
+
+//3.layui 刷新父页面的 table 【list】
+layui.use('table', function() {
+  //layUserListId 为父页面 table的 id
+  parent.layui.table.reload('layUserListId');
+})
+

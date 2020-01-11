@@ -1,0 +1,71 @@
+# freemarker
+spring:
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      enabled: true
+  freemarker:
+    allow-request-override: false
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: ''
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/shiro?useUnicode=true&
+      characterEncoding=utf-8&
+      useSSL=false&
+      serverTimezone=UTC&
+      nullCatalogMeansCurrent=true #不加的话，activiti 26 张表 无法创建
+    activiti:
+      process-definition-location-prefix: classpath*:/processes/
+######### redis 的配置 #########
+  redis:
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-idle: 200
+        min-idle: 200
+        max-active: 2000
+        max-wait: 1000
+    timeout: 3000
+  ##配置静态资源的路径
+  resources:
+    static-locations: /META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  ### ehcache settting
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:/config/ehcache.xml
+
+##### 分页插件的配置 ######
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  #type-aliases-package: com.yzx.shiro.beans
+
+####### shiro #########
+#List<Map<String, String>>
+permission-config:
+  perms:
+    - url: /com/yzx/admin
+      permission: roles[admin]
+    - url: /com/yzx/employment
+      permission: roles[employment]
+    - url: /com/yzx/juese
+      permission: perms[juese]
+    - url: /com/yzx/yonghu
+      permission: perms[yonghu]

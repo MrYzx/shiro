@@ -1,0 +1,17 @@
+<#-- bootstrap table 的使用 -->
+<table data-toggle="table">
+    <thead>
+    <tr>
+        <th data-field="id" data-title="序号"></th>
+        <th data-field="name" data-editable-emptytext="Custom empty text.">Item Name</th>
+        <th data-field="price">Item Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td ></td>
+        <td>20 ￥</td>
+    </tr>
+    </tbody>
+</table>

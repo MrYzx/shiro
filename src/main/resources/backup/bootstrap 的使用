@@ -1,0 +1,6 @@
+1.bootstrap 是否引入的测试
+<div class="container"><br/>
+   <div class="alert alert-success">
+       <h3>index首页</h3>Hello, <strong>springboot and bootstrap！！！</strong>
+   </div>
+</div>

@@ -1,0 +1,10 @@
+1.shiro 中匿名标签的使用
+  <@shiro.guest>
+     您当前是游客
+  </@shiro.guest>
+2.用户登录后显示相应的信息
+  <@shiro.user></@shiro.user>
+3.通过shiro.principal 获取用户对象信息，通过 property 获取对象中的属性
+  <@shiro.user>
+      欢迎[<@shiro.principal property="userName"/>]登录
+  </@shiro.user>
