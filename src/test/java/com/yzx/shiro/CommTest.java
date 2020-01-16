@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CommTest {
-    // A 是 B 的子类 但是 List<A> 不是 List<B> 的子类
+/*    // A 是 B 的子类 但是 List<A> 不是 List<B> 的子类
     //List<A> ,List<B> ... 是List<?> 的子类
     @Test
     public void testComm3(){
@@ -136,5 +136,5 @@ public class CommTest {
 // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
+    }*/
 }

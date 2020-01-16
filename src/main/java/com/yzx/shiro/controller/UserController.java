@@ -15,6 +15,7 @@ import com.yzx.shiro.utils.MD5Util;
 import com.yzx.shiro.utils.PDFUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -25,7 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -131,9 +131,9 @@ public class UserController {
     }
 
     @ApiOperation("查询用户列表信息")
-    @RequestMapping("/userList")
+    @RequestMapping("/userList3")
     @ResponseBody
-    public JSONObject userList(){
+    public JSONObject userList3(){
         JSONObject jsonObject = new JSONObject();
         //List<SysUser> list = sysUserService.userList();
         List list = new ArrayList();
@@ -225,7 +225,7 @@ public class UserController {
     @ApiOperation(value = "到layui 页面")
     @RequestMapping("/main")
     public String layUi(){
-        return "main";
+        return "main2";
     }
 
     @RequestMapping("/employment")
@@ -237,7 +237,6 @@ public class UserController {
 
     @RequestMapping("/showList")
     public String showList(Model model){
-        System.out.println("显示所有的用户信息 ");
         List<User> users = userService.userList();
         if(users.size() > 0  && users != null){
             model.addAttribute("users",users);
@@ -245,9 +244,27 @@ public class UserController {
         return "list";
     }
 
+    @RequestMapping("/userList")
+    public String userList(Model model){
+        return "page/user/userList";
+    }
+
     @ApiOperation("到注册信息页面")
     @RequestMapping("/register")
-    public String register(Model model,SysUser sysUser){
+    public String register(Model model,SysUser sysUser,String option){
+        try{
+            if(StringUtils.isNotEmpty(option)){
+                sysUser = sysUserService.findUser(sysUser);
+                if("view".equals(option)){
+                    model.addAttribute("option","view");
+                }else if("edit".equals(option)){
+                    model.addAttribute("option","view");
+                }
+            }
+            model.addAttribute("sysUser",sysUser);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "register";
     }
 

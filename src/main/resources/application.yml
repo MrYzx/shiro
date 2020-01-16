@@ -1,9 +1,10 @@
-# freemarker
 spring:
+  ## 热部署
   devtools:
     restart:
       additional-paths: src/main/java
       enabled: true
+  ## freemarker 的配置
   freemarker:
     allow-request-override: false
     cache: false
@@ -14,6 +15,7 @@ spring:
     expose-session-attributes: true
     suffix: .ftl
     template-loader-path: classpath:/templates/
+  ## 数据源的配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     password: ''
@@ -24,9 +26,10 @@ spring:
       useSSL=false&
       serverTimezone=UTC&
       nullCatalogMeansCurrent=true #不加的话，activiti 26 张表 无法创建
+    ## 工作流的配置
     activiti:
       process-definition-location-prefix: classpath*:/processes/
-######### redis 的配置 #########
+  ## redis的配置
   redis:
     host: localhost
     port: 6379
@@ -37,28 +40,28 @@ spring:
         max-active: 2000
         max-wait: 1000
     timeout: 3000
-  ##配置静态资源的路径
+  ## 配置静态资源的路径
   resources:
     static-locations: /META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
-  ### ehcache settting
+  ## ehcache
   cache:
     type: ehcache
     ehcache:
       config: classpath:/config/ehcache.xml
 
-##### 分页插件的配置 ######
+## 分页插件的配置
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
 
+## mybatis  的配置
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   #type-aliases-package: com.yzx.shiro.beans
 
-####### shiro #########
-#List<Map<String, String>>
+## shiro 的配置【权限信息的配置】
 permission-config:
   perms:
     - url: /com/yzx/admin
@@ -69,3 +72,9 @@ permission-config:
       permission: perms[juese]
     - url: /com/yzx/yonghu
       permission: perms[yonghu]
+
+## 配置打印 sql 语句
+logging:
+  level:
+    #mybatis 中对应的位置
+    com.yzx.shiro.mapper : debug

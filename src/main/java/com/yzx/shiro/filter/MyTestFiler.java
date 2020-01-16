@@ -5,10 +5,10 @@ import javax.servlet.*;
 import java.io.IOException;
 
 public class MyTestFiler implements Filter {
-
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
 
+    public void init(FilterConfig filterConfig) throws ServletException {
+         
     }
 
     @Override

@@ -13,4 +13,6 @@ public interface SysUserService {
     Map<String,Object> userList (int page, int limit);
 
     int deleteUser(SysUser sysUser);
+
+    SysUser findUser(SysUser sysUser);
 }

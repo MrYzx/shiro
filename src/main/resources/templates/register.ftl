@@ -9,7 +9,7 @@
 </head>
 <body class="layui-layout-body">
       <blockquote class="layui-elem-quote layui-text">
-          鉴于小伙伴的普遍反馈，先温馨提醒两个常见“问题”：1. <a href="/doc/base/faq.html#form" target="_blank">为什么select/checkbox/radio没显示？</a> 2. <a href="/doc/modules/form.html#render" target="_blank">动态添加的表单元素如何更新？</a>
+          鉴于小伙伴的普遍反馈，先温馨提醒两个常见“问题”
       </blockquote>
 
       <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -21,13 +21,13 @@
               <div class="layui-inline">
                   <label class="layui-form-label">用户名称</label>
                   <div class="layui-input-inline">
-                      <input type="text" name="userName" autocomplete="off" class="layui-input">
+                      <input type="text" name="userName" value="${sysUser.userName!''}" autocomplete="off" class="layui-input">
                   </div>
               </div>
               <div class="layui-inline">
                   <label class="layui-form-label">用户密码</label>
                   <div class="layui-input-inline">
-                      <input type="text" name="password" lay-verify="password" autocomplete="off" class="layui-input">
+                      <input type="text" name="password" lay-verify="password" value="${sysUser.password!''}" autocomplete="off" class="layui-input">
                   </div>
               </div>
           </div>
@@ -35,14 +35,17 @@
               <div class="layui-inline">
                   <label class="layui-form-label">手机号码</label>
                   <div class="layui-input-inline">
-                      <input type="tel" name="tel" autocomplete="off" class="layui-input">
+                      <input type="tel" name="tel" autocomplete="off" value="${sysUser.tel!''}" class="layui-input">
                   </div>
               </div>
           </div>
           <div class="layui-form-item">
               <div class="layui-input-block">
-                  <button type="button" class="layui-btn" onclick="register()" lay-filter="demo1">立即提交</button>
-                  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                  <#-- option 不为空时的操作 -->
+                  <#if option ??><#else>
+                       <button type="button" class="layui-btn" onclick="register()" lay-filter="demo1">立即提交</button>
+                       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                  </#if>
               </div>
           </div>
       </form>

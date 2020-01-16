@@ -1,5 +1,6 @@
 package com.yzx.shiro.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yzx.shiro.beans.SysUser;
 import io.swagger.annotations.ApiOperation;
 import org.activiti.engine.*;
@@ -10,10 +11,14 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 请假流程控制器
@@ -33,6 +38,12 @@ public class HolidayController {
     HistoryService historyService;
     @Autowired
     TaskService taskService;
+
+    @RequestMapping("/ListPage")
+    public String ListPage(Model model){
+        return "page/holiday/holidayList";
+    }
+
 
     @ApiOperation("启动请假流程实例")
     @RequestMapping("/startHoliday")
@@ -59,7 +70,8 @@ public class HolidayController {
     @ApiOperation("查询当前用户的流程实例，多条查询")
     @RequestMapping("/queryHolidayList")
     @ResponseBody
-    public String queryHolidayList(){
+    public JSONObject queryHolidayList(int page,int limit){
+        JSONObject jsonObject = new JSONObject();
         //通过shiro 获取当前的用户信息
         Subject currentUser = SecurityUtils.getSubject();
         String userName = ((SysUser)currentUser.getPrincipal()).getUserName();
@@ -68,16 +80,25 @@ public class HolidayController {
                 .processDefinitionKey("myProcess_1")
                 .taskAssignee(userName)
                 .list();
+
+        List list = new ArrayList();
+        Map<String,Object>map = new HashMap<>();
         //4.任务列表的展示
         for(Task task :taskList){
-            System.out.println("流程实例ID:"+task.getProcessInstanceId());
+            map.put("executionId",task.getExecutionId());
+            map.put("name",task.getName());
+            map.put("assignee",task.getAssignee());
+            /*System.out.println("流程实例ID:"+task.getProcessInstanceId());
             System.out.println("任务ID:"+task.getId());
             System.out.println("任务负责人:"+task.getAssignee());
-            System.out.println("任务名称:"+task.getName());
+            System.out.println("任务名称:"+task.getName());*/
         }
-        return "";
+        list.add(map);
+        jsonObject.put("code","0");
+        jsonObject.put("count",taskList.size());
+        jsonObject.put("data",list);
+        return jsonObject;
     }
-
 
     @ApiOperation("查询当前用户的流程实例，单条查询")
     @RequestMapping("/queryHoliday")

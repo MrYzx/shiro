@@ -42,4 +42,10 @@ public class SysUserServiceImpl implements SysUserService {
     public int deleteUser(SysUser sysUser) {
         return sysUserMapper.delete(sysUser);
     }
+
+    @Override
+    public SysUser findUser(SysUser sysUser) {
+
+        return sysUserMapper.selectOne(sysUser);
+    }
 }
