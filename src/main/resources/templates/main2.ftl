@@ -7,6 +7,7 @@
     <#include "common.ftl">
 </head>
 <body class="layui-layout-body">
+<a href="/com/yzx/msg/sendMsg">ssss</a>
     <div class="layui-layout layui-layout-admin">
         <#-- layui 头部模块 -->
         <div class="layui-header">

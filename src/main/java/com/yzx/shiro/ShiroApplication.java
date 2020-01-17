@@ -7,7 +7,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @MapperScan("com.yzx.shiro.mapper")
-@EnableCaching  //开启缓存模式
+//开启缓存模式
+@EnableCaching
 /**
  * springboot 的启动类
  * @author :yzx

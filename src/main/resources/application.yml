@@ -1,3 +1,11 @@
+## server服务器端口和 session 过期时间的设置
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 10800s
+
+#########  spring 相关的设置   ########
 spring:
   ## 热部署
   devtools:
@@ -48,6 +56,12 @@ spring:
     type: ehcache
     ehcache:
       config: classpath:/config/ehcache.xml
+  ##  rabbitmq 的配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: 'guest'
 
 ## 分页插件的配置
 pagehelper:
