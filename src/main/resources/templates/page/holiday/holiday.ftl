@@ -52,7 +52,7 @@
             var arr = new Array();
             $.ajax({
                 type: "post",
-                url: "/com/yzx/holiday/startHoliday",
+                url: "/com/yzx/holiday/startHoliday?proessName=myProcess_1",
                 //ajax请求的参数直接用data.field获取表单里含有name属性的元素的值s
                 data:data.field,
                 dataType:"json",

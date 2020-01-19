@@ -14,6 +14,16 @@ public class SysHoliday {
     private String htype;
     //请假原因
     private String reason;
+    //提交时间
+    private String apptime;
+
+    public String getApptime() {
+        return apptime;
+    }
+
+    public void setApptime(String apptime) {
+        this.apptime = apptime;
+    }
 
     public String getHtime() {
         return htime;

@@ -4,7 +4,7 @@
 3.swagger 工具的整合<br>
 
 
-![Image text](/static/statics/images/111.jpg)
+![Image text](https://raw.githubusercontent.com/MrYzx/shiro/master/project_Images/1579163029.png)
 
 @author:yzx<br>
 @motto ：if have a litter hope, I will not give up<br>

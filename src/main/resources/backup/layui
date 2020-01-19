@@ -121,3 +121,19 @@ layer.open({
     //遮罩透明度
     content: '/com/yzx/holiday/holidayPage',
 });
+
+//7.layui 中table 中数据的格式
+{
+	"code": "0",
+	"data": [{
+		"avaliable": false,
+		"id": "2",
+		"locked": false,
+		"password": "3c99f2a0cec29a831929441d5569bd8c",
+		"salt": "1574596445022",
+		"tel": "17836374857",
+		"userId": "6",
+		"userName": "yzx"
+	}],
+	"count": 8
+}

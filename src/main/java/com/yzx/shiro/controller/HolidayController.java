@@ -57,13 +57,13 @@ public class HolidayController {
     @ApiOperation("启动请假流程实例")
     @RequestMapping("/startHoliday")
     @ResponseBody
-    public JSONObject startHoliday(SysHoliday holiday){
+    public JSONObject startHoliday(SysHoliday holiday,String proessName){
         JSONObject json = new JSONObject();
         try{
             int pk = holidayService.addHoliday(holiday);
             if(pk > 0){
                 //创建流程实例  流程定义的key需要知道
-                ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("myProcess_1", "holiday_"+pk);
+                ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(proessName, "holiday_"+pk);
                 json.put("flag",true);
                 json.put("msg","请假信息提交成功！");
             }else{
@@ -81,7 +81,7 @@ public class HolidayController {
     @ApiOperation("查询当前用户的流程实例，多条查询")
     @RequestMapping("/queryHolidayList")
     @ResponseBody
-    public JSONObject queryHolidayList(int page,int limit){
+    public JSONObject queryHolidayList(int page,int limit,String proessName){
         List list = new ArrayList(10);
         Map<String,Object>map = new HashMap<>(16);
         JSONObject jsonObject = new JSONObject();
@@ -90,7 +90,7 @@ public class HolidayController {
         String userName = ((SysUser)currentUser.getPrincipal()).getUserName();
         //根据流程定义的key,负责人assignee来实现当前用户的任务列表查询
         List<Task> taskList = taskService.createTaskQuery()
-                .processDefinitionKey("myProcess_1")
+                .processDefinitionKey(proessName)
                 .taskAssignee(userName)
                 .list();
         if(taskList != null && taskList.size()>0){
@@ -113,14 +113,14 @@ public class HolidayController {
 
     @ApiOperation("查询当前用户的流程实例，单条查询")
     @RequestMapping("/queryHoliday")
-    public String queryHoliday(Model model){
+    public String queryHoliday(Model model,String proessName){
         //通过shiro 获取当前的用户信息
         Subject currentUser = SecurityUtils.getSubject();
         String userName = ((SysUser)currentUser.getPrincipal()).getUserName();
         //查询当前的任务【act_ru_task】
         try{
             Task task = taskService.createTaskQuery()
-                    .processDefinitionKey("myProcess_1")
+                    .processDefinitionKey(proessName)
                     .taskAssignee(userName)
                     .singleResult();
             if(task != null){
@@ -152,7 +152,7 @@ public class HolidayController {
     @ApiOperation("完成当前的任务进度")
     @RequestMapping("/completeTask")
     @ResponseBody
-    public JSONObject completeTask(){
+    public JSONObject completeTask(String proessName,String excutionId){
         JSONObject json = new JSONObject();
         //通过shiro 获取当前的用户信息
         Subject currentUser = SecurityUtils.getSubject();
@@ -160,7 +160,8 @@ public class HolidayController {
         try{
             //查询当前的任务信息
             Task task = taskService.createTaskQuery()
-                    .processDefinitionKey("myProcess_1")
+                    .processDefinitionKey(proessName)
+                    .executionId(excutionId)
                     .taskAssignee(userName)
                     .singleResult();
             if(task != null){

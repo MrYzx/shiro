@@ -27,7 +27,7 @@
             table.render({
                 elem: '#holidayListId',
                 id: 'layHolidayListId',
-                url: '/com/yzx/holiday/queryHolidayList',
+                url: '/com/yzx/holiday/queryHolidayList?proessName=myProcess_1',
                 title: '请假信息列表',
                 toolbar: '#toolbarDemo',
                 cellMinWidth: 300,
@@ -78,7 +78,7 @@
                         viewHoliday();
                         break;
                     case 'compHoliday':
-                        compHoliday();
+                        compHoliday(data.executionId);
                         break;
                     default:
                         break;
@@ -139,7 +139,7 @@
                     maxmin: true,
                     area: ['600px', '600px'],
                     shadeClose: false, //点击遮罩关闭
-                    content: '/com/yzx/holiday/queryHoliday',
+                    content: '/com/yzx/holiday/queryHoliday?proessName=myProcess_1',
                 });
             };
 
@@ -168,15 +168,13 @@
             };
 
             //完成当前任务
-            function compHoliday() {
-                debugger;
+            function compHoliday(executionId) {
                 //ajax请求的参数直接用data.field获取表单里含有name属性的元素的值s
                 $.ajax({
                     type: "post",
-                    url: "/com/yzx/holiday/completeTask",
+                    url: "/com/yzx/holiday/completeTask?proessName=myProcess_1",
                     dataType:"json",
                     cache: false,
-                    data:"",
                     success:function(d){
                         if(d.flag == true){
                             layer.alert('消息信息：'+d.msg, {
