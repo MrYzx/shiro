@@ -280,6 +280,15 @@
 			<artifactId>jquery</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+
+		<!-- rabbitmq 的使用  -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+			<version>1.5.2.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

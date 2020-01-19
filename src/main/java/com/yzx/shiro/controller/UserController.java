@@ -171,6 +171,7 @@ public class UserController {
         jsonObject.put("code","0");
         jsonObject.put("count",map.get("total"));
         jsonObject.put("data",(List)map.get("list"));
+        System.out.println("data=="+jsonObject.toString());
         return jsonObject;
     }
 

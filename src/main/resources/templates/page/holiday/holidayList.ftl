@@ -10,8 +10,8 @@
 <body class="layui-layout-body">
     <table class="layui-hide" id="holidayListId" lay-filter="holidayListId"></table>
     <script type="text/html" id="options">
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="viewUser">查看</button>
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="removeUser">删除</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="viewHoliday">查看</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="compHoliday">发送</button>
     </script>
     <script type="text/html" id="toolbarDemo">
         <div class="layui-btn-container">
@@ -21,6 +21,7 @@
         </div>
     </script>
     <script>
+        //layui 中基本信息的使用
         layui.use('table', function() {
             var table = layui.table;
             table.render({
@@ -68,15 +69,16 @@
                     }]
                 ]
             });
+
             //监听工具条事件
             table.on('tool(holidayListId)', function(obj) {
                 var data = obj.data; //获得当前行数据
                 switch(obj.event) {
-                    case 'viewUser':
-                        viewUser();
+                    case 'viewHoliday':
+                        viewHoliday();
                         break;
-                    case 'removeUser':
-                        removeUser(data.userId);
+                    case 'compHoliday':
+                        compHoliday();
                         break;
                     default:
                         break;
@@ -86,7 +88,6 @@
             //头工具栏监听事件
             table.on('toolbar(holidayListId)', function(obj){
                 //var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
-                debugger;
                 switch(obj.event){
                     case 'leave':
                         leave();
@@ -95,7 +96,6 @@
                         break;
                 };
             });
-
 
             var $ = layui.$,
                 active = {
@@ -132,47 +132,65 @@
             });
 
             //查看用户信息
-            function viewUser() {
-
-            };
-
-            //添加用户信息
-            function leave() {
+            function viewHoliday() {
                 layer.open({
                     type: 2,
-                    title: '用户信息添加',
+                    title: '用户信息修改',
                     maxmin: true,
                     area: ['600px', '600px'],
                     shadeClose: false, //点击遮罩关闭
-                    content: '/com/yzx/register',
+                    content: '/com/yzx/holiday/queryHoliday',
                 });
             };
 
-            //删除用户信息
-            function removeUser(userId) {
-                layer.confirm('确定要删除么?', function(index){
-                    $.ajax({
-                        type:'post',
-                        url:"/com/yzx/deleteUser?userId="+userId,
-                        cache: false,
-                        dataType:'json',
-                        success:function(data){
-                            var a = data;
-                            if(a.flag == true){
-                                layer.close(index);
-                                layui.use(['layer', 'form'], function(){
-                                    var layer = layui.layer;
-                                    layer.msg('删除信息：'+a.msg);
-                                });
-                                layui.table.reload('layUserListId');
-                            }else{
-                                layui.use(['layer', 'form'], function(){
-                                    var layer = layui.layer;
-                                    layer.msg('错误信息：'+a.msg);
-                                });
-                            }
+            //请假申请页面
+            function leave() {
+                layer.open({
+                    //设置坐标
+                    offset: '100px',
+                    //设置皮肤样式 ，demo-class
+                    skin: 'layui-layer-molv',
+                    //遮罩透明度
+                    //shade: 0.8,
+                    //关闭按钮是否显示 1显示0不显示
+                    closeBtn: 1,
+                    //类型，解析url  可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 2,
+                    title: '请假',
+                    maxmin: true,
+                    //设置宽高
+                    area: ['600px', '400px'],
+                    //点击遮罩关闭
+                    shadeClose: false,
+                    //遮罩透明度
+                    content: '/com/yzx/holiday/holidayPage',
+                });
+            };
+
+            //完成当前任务
+            function compHoliday() {
+                debugger;
+                //ajax请求的参数直接用data.field获取表单里含有name属性的元素的值s
+                $.ajax({
+                    type: "post",
+                    url: "/com/yzx/holiday/completeTask",
+                    dataType:"json",
+                    cache: false,
+                    data:"",
+                    success:function(d){
+                        if(d.flag == true){
+                            layer.alert('消息信息：'+d.msg, {
+                                icon: 1,
+                            });
+                        }else {
+                            layer.alert('消息信息：'+d.msg, {
+                                icon: 2,
+                            });
                         }
-                    })
+                        layui.table.reload('layHolidayListId');
+                    },error:function (d) {
+                        layer.msg("发生未知错误！");
+                    }
                 });
             };
         });

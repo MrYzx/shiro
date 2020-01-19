@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yzx.shiro.mapper.HolidayMapper">
+    <!--结果集的映射-->
+    <resultMap id="BaseResultMap" type="com.yzx.shiro.beans.SysHoliday">
+        <id column="hid" property="hid" />
+        <result column="head" jdbcType="VARCHAR" property="head" />
+        <result column="htype" jdbcType="VARCHAR" property="htype" />
+        <result column="htime" jdbcType="VARCHAR" property="htime" />
+        <result column="reason" jdbcType="VARCHAR" property="reason" />
+    </resultMap>
+
+    <insert id="addHoliday" useGeneratedKeys="true" keyProperty="hid">
+        insert into `sys_holiday`(head,htype,htime,reason)
+                      values (#{head},#{htype},#{htime},#{reason})
+    </insert>
+
+    <select id="findHolidayById" resultMap="BaseResultMap">
+        select * from `sys_holiday` where hid=#{hid}
+    </select>
+
+</mapper>
