@@ -48,6 +48,10 @@
                                class="site-demo-active" data-type="tabAdd">用户管理</a></dd>
                         <dd><a href="javascript:;" data-id="2" data-title="请假管理" data-url="/com/yzx/holiday/ListPage"
                                class="site-demo-active" data-type="tabAdd">请假管理</a></dd>
+                        <dd><a href="javascript:;" data-id="3" data-title="请假流程图" data-url="/com/yzx/holiday/viewHolidayImg"
+                               class="site-demo-active" data-type="tabAdd">请假流程图</a></dd>
+                        <dd><a href="javascript:;" data-id="4" data-title="请假记录" data-url="/com/yzx/holiday/queryHistoryHolidayList"
+                               class="site-demo-active" data-type="tabAdd">请假记录</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -145,6 +149,12 @@
             $("iframe").css("height",h+"px");
         }
     });
+
+    //下载文件
+    function downLoad() {
+        alert("aaa");
+        window.open("/com/yzx/holiday/download");
+    }
 </script>
 </body>
 </html>

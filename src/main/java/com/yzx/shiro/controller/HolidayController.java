@@ -6,17 +6,22 @@ import com.yzx.shiro.beans.SysUser;
 import com.yzx.shiro.service.HolidayService;
 import io.swagger.annotations.ApiOperation;
 import org.activiti.engine.*;
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +51,12 @@ public class HolidayController {
     @RequestMapping("/ListPage")
     public String ListPage(Model model){
         return "page/holiday/holidayList";
+    }
+
+    @ApiOperation(value = "查看请假流程图")
+    @RequestMapping("/viewHolidayImg")
+    public String viewHolidayImg(Model model){
+        return "page/holiday/holidayProcess";
     }
 
     @RequestMapping("/holidayPage")
@@ -145,8 +156,15 @@ public class HolidayController {
     @ApiOperation("查询当前用户的历史请假记录")
     @RequestMapping("/queryHistoryHolidayList")
     @ResponseBody
-    public String queryHistorqueryHistoryHolidayListyHoliday(){
-        return "";
+    public JSONObject queryHistorqueryHistoryHolidayListyHoliday(){
+        JSONObject json = new JSONObject();
+        Subject currentUser = SecurityUtils.getSubject();
+        String userName = ((SysUser)currentUser.getPrincipal()).getUserName();
+        List<HistoricTaskInstance> taskList  = historyService.createHistoricTaskInstanceQuery()
+                .taskAssignee(userName)
+                .finished()
+                .list();
+        return json;
     }
 
     @ApiOperation("完成当前的任务进度")
@@ -179,5 +197,105 @@ public class HolidayController {
             e.printStackTrace();
         }
         return json;
+    }
+
+    @ApiOperation("查看流程定义的流程图")
+    @RequestMapping("/viewProcessImg")
+    public void viewProcessImg() throws IOException {
+        // 从仓库中找需要展示的文件
+        String deploymentId = "17501";
+        List<String> names = repositoryService.getDeploymentResourceNames(deploymentId);
+        String imageName = null;
+        for (String name : names) {
+            if (name.indexOf(".png") >= 0) {
+                imageName = name;
+            }
+        }
+        if (imageName != null) {
+            System.out.println(imageName);
+            File f = new File("d:/" + "ddd.png");
+            // 通过部署ID和文件名称得到文件的输入流
+            InputStream in = repositoryService.getResourceAsStream(deploymentId, imageName);
+            FileUtils.copyInputStreamToFile(in,f);
+        }
+    }
+
+    @ApiOperation("查看流程定义的流程图")
+    @RequestMapping("/viewProcessImg2")
+    public String viewProcessImg2(HttpServletResponse resp,String deploymentId) throws IOException {
+        resp.setContentType("image/jpeg");
+        InputStream in = null;
+        deploymentId = "17501";
+        try {
+            // 从仓库中找需要展示的文件
+            List<String> names = repositoryService.getDeploymentResourceNames(deploymentId);
+            String imageName = null;
+            for (String name : names) {
+                if (name.indexOf(".png") >= 0) {
+                    imageName = name;
+                }
+            }
+            if (imageName != null) {
+                // 通过部署ID和文件名称得到文件的输入流
+                in = repositoryService.getResourceAsStream(deploymentId, imageName);
+            }
+            OutputStream out = resp.getOutputStream();
+            // 把图片的输入流程写入resp的输出流中
+            byte[] b = new byte[1024];
+            for (int len = -1; (len= in.read(b))!=-1; ) {
+                out.write(b, 0, len);
+            }
+            // 关闭流
+            out.close();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @ApiOperation("下载文件")
+    @RequestMapping("/download")
+    public void download(String fileName, HttpServletResponse response) throws IOException{
+        fileName = "ddd.png";
+        File file = new File("D:\\ddd.png");
+        if(null != file){
+            OutputStream out =null;
+            InputStream in = null;
+            try{
+                in = new BufferedInputStream(new FileInputStream(file));
+                byte[] buffer = new byte[in.available()];
+                in.read(buffer);
+                response.reset();
+                response.setHeader("content-disposition","attachment;filename=" + encodingFileName(fileName));
+                out = new BufferedOutputStream(response.getOutputStream());
+                out.write(buffer);
+            }catch(IOException e){
+                e.printStackTrace();
+            }finally{
+                if(null != in){
+                    in.close();
+                }
+                if(null != out){
+                    out.close();
+                }
+            }
+        }
+    }
+
+    //对文件名进行编码，解决下载文件名中文乱码的问题
+    private static String encodingFileName(String fileName) {
+        String returnFileName = "";
+        try {
+            returnFileName = URLEncoder.encode(fileName, "UTF-8");
+            returnFileName = StringUtils.replace(returnFileName, "+", "%20");
+            if (returnFileName.length() > 150) {
+                returnFileName = new String(fileName.getBytes("GB2312"), "ISO8859-1");
+                returnFileName = StringUtils.replace(returnFileName, " ", "%20");
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return returnFileName;
     }
 }
