@@ -17,11 +17,27 @@ import sun.net.www.content.text.Generic;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class CommTest {
+
+    //map 中覆盖的使用
+    @Test
+    public void test3(){
+        Map map = new HashMap();
+        List list = new ArrayList();
+        for(int i = 0;i<=2;i++){
+            System.out.println("map==="+map);
+            map.put("name"+i,"lisi"+i);
+            map.put("age"+i,i);
+            System.out.println("map2==="+map);
+            list.add(map);
+        }
+        map.remove("name1");
+        System.out.println("list==="+list);
+    }
+
+
 /*    // A 是 B 的子类 但是 List<A> 不是 List<B> 的子类
     //List<A> ,List<B> ... 是List<?> 的子类
     @Test

@@ -50,8 +50,14 @@
                                class="site-demo-active" data-type="tabAdd">请假管理</a></dd>
                         <dd><a href="javascript:;" data-id="3" data-title="请假流程图" data-url="/com/yzx/holiday/viewHolidayImg"
                                class="site-demo-active" data-type="tabAdd">请假流程图</a></dd>
-                        <dd><a href="javascript:;" data-id="4" data-title="请假记录" data-url="/com/yzx/holiday/queryHistoryHolidayList"
+                        <dd><a href="javascript:;" data-id="4" data-title="请假记录" data-url="/com/yzx/holiday/holidayHistory"
                                class="site-demo-active" data-type="tabAdd">请假记录</a></dd>
+                        <dd><a href="javascript:;" data-id="5" data-title="请假评论" data-url="/com/yzx/holiday/getProcessComments"
+                               class="site-demo-active" data-type="tabAdd">请假评论</a></dd>
+                        <dd><a href="javascript:;" data-id="6" data-title="激活请假流程" data-url="/com/yzx/holiday/activeOrSuspend"
+                               class="site-demo-active" data-type="tabAdd">激活请假流程</a></dd>
+                        <dd><a href="javascript:;" data-id="7" data-title="挂起请假流程" data-url="/com/yzx/holiday/activeOrSuspend"
+                               class="site-demo-active" data-type="tabAdd">挂起请假流程</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

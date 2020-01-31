@@ -2,25 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>请假List页面</title>
-    <link rel="stylesheet" href="/statics/layui/css/layui.css">
-    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/statics/layui/layui.js"></script>
+    <title>请假历史List页面</title>
+    <#include "../../common.ftl">
 </head>
 <body class="layui-layout-body">
     <table class="layui-hide" id="holidayListId" lay-filter="holidayListId"></table>
     <script type="text/html" id="options">
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="viewHoliday">查看</button>
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="compHoliday">发送</button>
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="suspendHoliday">挂载</button>
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-warm" lay-event="activeHoliday">激活</button>
-    </script>
-    <script type="text/html" id="toolbarDemo">
-        <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="leave" >
-                <i class="layui-icon layui-icon-add-1"></i> 请假
-            </button>
-        </div>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="viewComment">查看</button>
     </script>
     <script>
         //layui 中基本信息的使用
@@ -29,7 +17,7 @@
             table.render({
                 elem: '#holidayListId',
                 id: 'layHolidayListId',
-                url: '/com/yzx/holiday/queryHolidayList?proessName=myProcess_1',
+                url: '/com/yzx/holiday/queryHistoryHolidayList',
                 title: '请假信息列表',
                 toolbar: '#toolbarDemo',
                 cellMinWidth: 300,
@@ -44,16 +32,10 @@
                 cols: [
                     [{
                         type:'radio',      //设置单选框
-                        //type: 'checkbox', //设置复选框
                         fixed: 'left'
                     },{
-                        field: 'id',
-                        title: '任务ID',
-                        align:"center",
-                        minWidth: '120',
-                    },{
                         field: 'processInstanceId',
-                        title: '流程实例ID',
+                        title: '流程定义Id',
                         align:"center",
                         minWidth: '120',
                     },{
@@ -75,7 +57,7 @@
                         title: '操作人员'
                     }, {
                         title: '操作',
-                        minWidth: '190',
+                        minWidth: '180',
                         align: 'center',
                         toolbar: '#options'
                     }]
@@ -86,17 +68,11 @@
             table.on('tool(holidayListId)', function(obj) {
                 var data = obj.data; //获得当前行数据
                 switch(obj.event) {
-                    case 'viewHoliday':
-                        viewHoliday();
+                    case 'viewComment':
+                        viewComment(data.processInstanceId);
                         break;
                     case 'compHoliday':
-                        compHoliday(data.id,data.processInstanceId);
-                        break;
-                    case 'suspendHoliday':
-                        suspendHoliday(data.processInstanceId);
-                        break;
-                    case 'activeHoliday':
-                        activeHoliday(data.processInstanceId);
+                        compHoliday(data.executionId);
                         break;
                     default:
                         break;
@@ -150,101 +126,61 @@
             });
 
             //查看用户信息
-            function viewHoliday() {
+            function viewComment(processId) {
                 layer.open({
                     type: 2,
-                    title: '用户信息修改',
+                    title: '请假审核意见',
                     maxmin: true,
-                    area: ['600px', '600px'],
+                    offset:'60px',
+                    area: ['600px', '400px'],
                     shadeClose: false, //点击遮罩关闭
-                    content: '/com/yzx/holiday/queryHoliday?proessName=myProcess_1',
+                    content: '/com/yzx/holiday/getProcessComments?taskId='+processId,
                 });
             };
 
             //请假申请页面
             function leave() {
-                //设置请假时是否已有提交的记录，如果有，不能进行请假操作，反之可以请假
+                layer.open({
+                    //设置坐标
+                    offset: '100px',
+                    //设置皮肤样式 ，demo-class
+                    skin: 'layui-layer-molv',
+                    //遮罩透明度
+                    //shade: 0.8,
+                    //关闭按钮是否显示 1显示0不显示
+                    closeBtn: 1,
+                    //类型，解析url  可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 2,
+                    title: '请假',
+                    maxmin: true,
+                    //设置宽高
+                    area: ['600px', '400px'],
+                    //点击遮罩关闭
+                    shadeClose: false,
+                    //遮罩透明度
+                    content: '/com/yzx/holiday/holidayPage',
+                });
+            };
+
+            //完成当前任务
+            function compHoliday(executionId) {
+                //ajax请求的参数直接用data.field获取表单里含有name属性的元素的值s
                 $.ajax({
                     type: "post",
-                    url: "/com/yzx/holiday/jugementTask?proessName=myProcess_1",
+                    url: "/com/yzx/holiday/completeTask?proessName=myProcess_1",
                     dataType:"json",
                     cache: false,
                     success:function(d){
                         if(d.flag == true){
-                            layer.open({
-                                //设置坐标
-                                offset: '100px',
-                                //设置皮肤样式 ，demo-class
-                                skin: 'layui-layer-molv',
-                                //遮罩透明度
-                                //shade: 0.8,
-                                //关闭按钮是否显示 1显示0不显示
-                                closeBtn: 1,
-                                //类型，解析url  可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-                                type: 2,
-                                title: '请假',
-                                maxmin: true,
-                                //设置宽高
-                                area: ['600px', '400px'],
-                                //点击遮罩关闭
-                                shadeClose: false,
-                                //遮罩透明度
-                                content: '/com/yzx/holiday/holidayPage',
+                            layer.alert('消息信息：'+d.msg, {
+                                icon: 1,
                             });
                         }else {
                             layer.alert('消息信息：'+d.msg, {
                                 icon: 2,
                             });
                         }
-                    },error:function (d) {
-                        layer.msg("发生未知错误！");
-                    }
-                });
-            };
-
-            //完成当前任务
-            function compHoliday(taskId,processInstanceId) {
-                layer.open({
-                    offset:'100px',
-                    type: 2,
-                    title: '消息意见',
-                    maxmin: true,
-                    area: ['600px', '600px'],
-                    shadeClose: false, //点击遮罩关闭
-                    content: '/com/yzx/holiday/messageInfo?taskId='+taskId+"&processInstanceId="+processInstanceId,
-                });
-            };
-
-            //激活当前任务
-            function activeHoliday(processInstanceId) {
-                $.ajax({
-                    type: "post",
-                    url: "/com/yzx/holiday/activeOrSuspendSingle",
-                    data:{"processInstanceId":processInstanceId},
-                    dataType:"json",
-                    cache: false,
-                    success:function(d){
-                        layer.alert('消息信息：'+d.msg, {
-                            icon: 2,
-                        });
-                    },error:function (d) {
-                        layer.msg("发生未知错误！");
-                    }
-                });
-            };
-
-            //挂载当前任务
-            function suspendHoliday(processInstanceId) {
-                $.ajax({
-                    type: "post",
-                    url: "/com/yzx/holiday/activeOrSuspendSingle",
-                    data:{"processInstanceId":processInstanceId},
-                    dataType:"json",
-                    cache: false,
-                    success:function(d){
-                        layer.alert('消息信息：'+d.msg, {
-                            icon: 1,
-                        });
+                        layui.table.reload('layHolidayListId');
                     },error:function (d) {
                         layer.msg("发生未知错误！");
                     }

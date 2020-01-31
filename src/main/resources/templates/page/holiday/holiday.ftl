@@ -57,14 +57,25 @@
                 data:data.field,
                 dataType:"json",
                 success:function(d){
-                    layer.alert('消息信息：'+d.msg, {
-                        icon: 1,
-                        //2秒关闭（如果不配置，默认是3秒）
-                        time: -1
-                    },function () {
-                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                        parent.layer.close(index); //再执行关闭
-                    });
+                    if(d.flag == true){
+                        layer.alert('消息信息：'+d.msg, {
+                            icon: 1,
+                            //2秒关闭（如果不配置，默认是3秒）
+                            time: -1
+                        },function () {
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
+                        });
+                    }else{
+                        layer.alert('消息信息：'+d.msg, {
+                            icon: 0,
+                            //2秒关闭（如果不配置，默认是3秒）
+                            time: -1
+                        },function () {
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
+                        });
+                    }
                     parent.layui.table.reload('layHolidayListId');
                 },error:function (d) {
                     layer.close(index);
