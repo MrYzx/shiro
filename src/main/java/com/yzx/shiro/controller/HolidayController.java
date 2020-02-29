@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yzx.shiro.beans.SysHoliday;
 import com.yzx.shiro.beans.SysUser;
 import com.yzx.shiro.service.HolidayService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricActivityInstance;
@@ -32,11 +33,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 请假流程控制器
+ * 请假流程控制器【基本的流程控制】
  * @author yzx
  * @date 2020/01/01
  * @desc 使用工作流引擎，完成简单的流程控制
  */
+@Api("基本的请假流程")
 @Controller
 @RequestMapping("/com/yzx/holiday")
 public class HolidayController {

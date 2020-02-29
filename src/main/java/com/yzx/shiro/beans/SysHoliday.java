@@ -1,15 +1,17 @@
 package com.yzx.shiro.beans;
 
+import java.io.Serializable;
+
 /**
  * 请假信息类
  */
-public class SysHoliday {
+public class SysHoliday implements Serializable {
     //主键
     private int hid;
     //标题
     private String head;
     //时长
-    private String htime;
+    private Integer htime;
     //请假类型
     private String htype;
     //请假原因
@@ -25,11 +27,11 @@ public class SysHoliday {
         this.apptime = apptime;
     }
 
-    public String getHtime() {
+    public Integer getHtime() {
         return htime;
     }
 
-    public void setHtime(String htime) {
+    public void setHtime(Integer htime) {
         this.htime = htime;
     }
 

@@ -7,6 +7,10 @@ import org.apache.shiro.crypto.hash.Md5Hash;
  */
 public class MD5Util {
 
+    private MD5Util() throws Exception {
+        throw new Exception("不允许实例化！");
+    }
+
     /**
      * 对登录的用户密码进行MD5方式的盐值加密
      * @param username 用户名

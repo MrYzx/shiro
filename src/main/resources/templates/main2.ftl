@@ -61,6 +61,23 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
+                    <a class="" href="javascript:;">请假管理2</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" data-id="2" data-title="请假管理" data-url="/com/yzx/holiday2/ListPage"
+                               class="site-demo-active" data-type="tabAdd">请假管理</a></dd>
+                        <dd><a href="javascript:;" data-id="3" data-title="请假流程图2" data-url="/com/yzx/holiday2/viewProcessImg2"
+                               class="site-demo-active" data-type="tabAdd">请假流程图2</a></dd>
+                        <dd><a href="javascript:;" data-id="4" data-title="请假记录" data-url="/com/yzx/holiday2/holidayHistory"
+                               class="site-demo-active" data-type="tabAdd">请假记录</a></dd>
+                        <dd><a href="javascript:;" data-id="5" data-title="请假评论" data-url="/com/yzx/holiday2/getProcessComments"
+                               class="site-demo-active" data-type="tabAdd">请假评论</a></dd>
+                        <dd><a href="javascript:;" data-id="6" data-title="激活请假流程" data-url="/com/yzx/holiday2/activeOrSuspend"
+                               class="site-demo-active" data-type="tabAdd">激活请假流程</a></dd>
+                        <dd><a href="javascript:;" data-id="7" data-title="挂起请假流程" data-url="/com/yzx/holiday2/activeOrSuspend"
+                               class="site-demo-active" data-type="tabAdd">挂起请假流程</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
                     <a href="javascript:;">交易管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-id="3" data-title="存款列表"

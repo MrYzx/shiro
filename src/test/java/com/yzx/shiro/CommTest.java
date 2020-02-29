@@ -1,25 +1,155 @@
 package com.yzx.shiro;
 
 import com.yzx.shiro.annotations.ModelCheck;
-import com.yzx.shiro.beans.Book;
-import com.yzx.shiro.beans.Order;
-import com.yzx.shiro.beans.SubBook;
-import com.yzx.shiro.beans.SysUser;
+import com.yzx.shiro.beans.*;
 import com.yzx.shiro.constant.BookEnum;
 import com.yzx.shiro.constant.ColorEnum;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import sun.net.www.content.text.Generic;
 
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
 public class CommTest {
+
+    @Test
+    public void test10(){
+
+        int i = 0;
+        i= ++i;
+        System.out.println(i);
+        int j = i++;
+        System.out.println(j);
+        System.out.println(i);
+    }
+
+    //测试java中对象的序列化和非序列化
+    @Test
+    public void test9() throws IOException, ClassNotFoundException {
+        //java 对象的序列化
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/test.out"));
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(new CloneTest2(1,"44"));
+        objectOutputStream.flush();
+        objectOutputStream.close();
+        //java 对象的反序列化
+        FileInputStream fileInputStream = new FileInputStream(new File("d:/test.out"));
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        CloneTest2 cloneTest2 = (CloneTest2) objectInputStream.readObject();
+        System.out.println(cloneTest2.getCloneName());
+        System.out.println(cloneTest2.getNum());
+    }
+
+    //克隆类的使用
+    @Test
+    public void test8() throws CloneNotSupportedException {
+        CloneTest cloneTest = new CloneTest();
+        cloneTest.setName("aa");
+        cloneTest.setPrice(12);
+        cloneTest.setAddr("bbb");
+        cloneTest.setCloneTest2(new CloneTest2(1,"wewe"));
+        CloneTest cloneTest1 = (CloneTest) cloneTest.clone();
+
+        cloneTest1.setAddr("bbbcc");
+        cloneTest.getCloneTest2().setCloneName("DDDD");
+        System.out.println("clone==="+cloneTest.toString());
+        System.out.println("clone2==="+cloneTest1.toString());
+        System.out.println(cloneTest1.getAddr() == cloneTest.getAddr());
+    }
+
+    //异常信息的使用
+    @Test
+    public void test7(){
+        try{
+            System.out.println("ccc");
+            int a = 1/0;
+        }catch (Exception e){
+            System.out.println("bbb");
+            return;
+        }finally {
+            System.out.println("aaaa");
+        }
+    }
+
+    //Files 的使用
+    @Test
+    public synchronized void test6(){
+    }
+
+
+
+    @Test
+    public void test5(){
+        List list = new ArrayList();
+        Vector vector = new Vector();
+        HashMap hashMap = new HashMap();
+        hashMap.put("s","d");
+        HashSet hashSet = new HashSet();
+        List list2 = new LinkedList();
+        System.err.println("PDFUtil 不允许实例化！");
+        Stack stack = new Stack();
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
+        int size = stack.size();
+        System.out.println("size==="+size);
+        String a = (String) stack.pop();
+        String c = (String)stack.peek();
+        System.out.println(c );
+        System.out.println(stack.size());
+
+
+        List list3 = new ArrayList();
+        list3.add("2");
+        list3.add("3");
+        list3.add("4");
+        Iterator iterator = list3.iterator();
+        while (iterator.hasNext()){
+            //list3.add("4");  添加修改元素时报错
+            System.out.println(iterator.next());
+        }
+
+        Queue queue = new LinkedList();
+        queue.add("a");
+        queue.add("b");
+        System.out.println("size=="+queue.size());
+        System.out.println(queue.peek());
+        System.out.println("size=="+queue.size());
+        System.out.println(queue.poll());
+        System.out.println("size=="+queue.size());
+        System.out.println(queue.remove());
+        System.out.println("size=="+queue.size());
+        System.out.println(queue.poll());
+        System.out.println(queue.remove());
+
+        ListIterator listIterator = list.listIterator();
+    }
+
+    @Test
+    public void test4(){
+
+        final int DF = 4;
+        String aa = "aaa";
+        String bb = "aaa";
+        System.out.println(aa==bb);
+        System.out.println("aaHash="+aa.hashCode());
+        System.out.println("bbHash="+bb.hashCode());
+        aa.equals(bb);
+        StringBuilder builder = new StringBuilder();
+        StringBuffer buffer = new StringBuffer();
+        Object object = new Object();
+        object.hashCode();
+        Integer a = new Integer(2);
+        a.equals(0);
+        System.out.println(Math.round(-1.5));
+    }
 
     //map 中覆盖的使用
     @Test
