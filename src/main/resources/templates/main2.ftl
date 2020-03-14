@@ -11,7 +11,7 @@
         <#-- layui 头部模块 -->
         <div class="layui-header">
             <div class="layui-logo"><i class="layui-icon layui-icon-release" style="font-size: 30px; color: #fff1fd;"></i>
-                运营后台管理系统
+                运营后台管理系统<a href="/com/yzx/bootstrapTable/toTablePage2">table 页面</a>
             </div>
             <!-- 头部区域（可配合layui已有的水平导航） -->
             <ul class="layui-nav layui-layout-right">

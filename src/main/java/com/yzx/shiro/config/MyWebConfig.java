@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * web 环境中监听器，过滤器，拦截器的综合配置
  * 启动顺序  监听器 > 过滤器 > 拦截器
  */
-@Configuration
+//@Configuration
 public class MyWebConfig implements WebMvcConfigurer {
     /**
      * 过滤器的配置
