@@ -6,5 +6,5 @@
 
 ![Image text](https://raw.githubusercontent.com/MrYzx/shiro/master/project_Images/1579163029.png)
 
-@author:yzx<br>
+@author: yzx 【熊熊】<br>
 @motto ：if have a litter hope, I will not give up<br>
