@@ -15,7 +15,7 @@ public class StudentCglib implements MethodInterceptor {
             Object rev = methodProxy.invokeSuper(o, objects);
             System.out.println("方法后调用。。。。。。。");
             return rev;
-        }else{
+        } else {
             Object rev = methodProxy.invokeSuper(o, objects);
             return rev;
         }

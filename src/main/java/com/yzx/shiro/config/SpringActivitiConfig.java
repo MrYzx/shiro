@@ -29,6 +29,7 @@ public class SpringActivitiConfig {
     private final DataSource dataSource;
 
     private final PlatformTransactionManager platformTransactionManager;
+
     @Autowired
     public SpringActivitiConfig(DataSource dataSource, PlatformTransactionManager platformTransactionManager) {
         this.dataSource = dataSource;

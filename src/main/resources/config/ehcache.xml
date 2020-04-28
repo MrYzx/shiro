@@ -29,7 +29,7 @@
 LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。
         clearOnFlush：内存数量最大时是否清除。 -->
     <!-- 磁盘缓存位置 -->
-    <diskStore path="java.io.tmpdir" />
+    <diskStore path="java.io.tmpdir"/>
 
     <!--
         defaultCache:默认的缓存配置信息,如果不加特殊说明,则所有对象按照此配置项处理
@@ -43,7 +43,7 @@ LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU�
         就算有访问，也只会存活600秒。
      -->
     <defaultCache maxElementsInMemory="10000" eternal="false"
-                  timeToIdleSeconds="600" timeToLiveSeconds="600" overflowToDisk="true" />
+                  timeToIdleSeconds="600" timeToLiveSeconds="600" overflowToDisk="true"/>
 
     <cache name="myCache"
            maxElementsInMemory="10000"

@@ -23,8 +23,8 @@ public class MyTestFiler implements Filter {
         HttpServletResponse rp = (HttpServletResponse) response;
         System.out.println("过滤器开始工作。。。。。。。。。");
         // 获得请求方式
-        String getRequestURI =  rq.getRequestURI();
+        String getRequestURI = rq.getRequestURI();
         System.out.println("getRequestURI:" + getRequestURI);
-        filterChain.doFilter(rq,rp);
+        filterChain.doFilter(rq, rp);
     }
 }

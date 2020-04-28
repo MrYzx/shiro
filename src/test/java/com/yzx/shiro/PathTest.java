@@ -19,10 +19,10 @@ public class PathTest {
     public void test7() throws IOException {
         Path path = Paths.get("d:\\www.txt");
         //通过 Files 获取通道
-        SeekableByteChannel seekableByteChannel = Files.newByteChannel(path,StandardOpenOption.READ);
+        SeekableByteChannel seekableByteChannel = Files.newByteChannel(path, StandardOpenOption.READ);
         DirectoryStream<Path> directoryStreams = Files.newDirectoryStream(Paths.get("d:\\"));
-        for(Path path1 : directoryStreams){
-            System.out.println("path=="+path1);
+        for (Path path1 : directoryStreams) {
+            System.out.println("path==" + path1);
         }
     }
 
@@ -31,8 +31,8 @@ public class PathTest {
     public void test6() throws IOException {
         Path path = Paths.get("d:\\www.txt");
         boolean flag = Files.exists(path, LinkOption.NOFOLLOW_LINKS);
-        System.out.println("flag==="+flag);
-        BasicFileAttributes basicFileAttributes = Files.readAttributes(path,BasicFileAttributes.class,LinkOption.NOFOLLOW_LINKS);
+        System.out.println("flag===" + flag);
+        BasicFileAttributes basicFileAttributes = Files.readAttributes(path, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
         System.out.println(basicFileAttributes.creationTime());
         System.out.println(basicFileAttributes.lastModifiedTime());
         System.out.println(basicFileAttributes.size());
@@ -46,8 +46,8 @@ public class PathTest {
     public void test5() throws IOException {
         Path path = Paths.get("d:\\aaaa.txt");
         Path path1 = Paths.get("d:\\a\\ss.txt");
-        System.out.println("fileSize=="+ Files.size(path));
-        Files.move(path,path1,StandardCopyOption.ATOMIC_MOVE);
+        System.out.println("fileSize==" + Files.size(path));
+        Files.move(path, path1, StandardCopyOption.ATOMIC_MOVE);
     }
 
     @Test
@@ -66,26 +66,26 @@ public class PathTest {
     public void test3() throws IOException {
         Path path1 = Paths.get("D:\\workFile\\own\\hbuilder\\test1\\index.html");
         Path path2 = Paths.get("D:\\index2.html");
-        Files.copy(path1,path2, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(path1, path2, StandardCopyOption.REPLACE_EXISTING);
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         //Path 中基本信息的使用
         Path path = Paths.get("D:\\", "workFile\\own\\hbuilder\\test1\\index.html");
-        System.out.println("getFileName=="+path.getFileName());
-        System.out.println("getFileSystem=="+path.getFileSystem());
-        System.out.println("endsWith=="+path.endsWith("index.html"));
-        System.out.println("startsWith=="+path.startsWith("e:\\"));
-        System.out.println("isAbsolute=="+path.isAbsolute());
+        System.out.println("getFileName==" + path.getFileName());
+        System.out.println("getFileSystem==" + path.getFileSystem());
+        System.out.println("endsWith==" + path.endsWith("index.html"));
+        System.out.println("startsWith==" + path.startsWith("e:\\"));
+        System.out.println("isAbsolute==" + path.isAbsolute());
         System.out.println(path.getNameCount());
-        for (int i=0;i<path.getNameCount();i++){
-            System.out.println("file=="+path.getName(i));
+        for (int i = 0; i < path.getNameCount(); i++) {
+            System.out.println("file==" + path.getName(i));
         }
     }
 
     @Test
-    public void test1(){
+    public void test1() {
         Path path = Paths.get("D:\\workFile\\own\\hbuilder\\test1\\index.html");
         //获取父目录
         System.out.println(path.getParent());
@@ -94,13 +94,13 @@ public class PathTest {
 
         //将指定的路径解析为其他的路径
         Path path2 = path.resolve("d:\\index.html");
-        System.out.println("path2 ="+path2.toString());
+        System.out.println("path2 =" + path2.toString());
 
         //设置index.html 的相对路径
         Path path1 = Paths.get("index.html");
         //获取指定文件的绝对路径
         Path newPath = path1.toAbsolutePath();
-        System.out.println("newpath=="+newPath);
+        System.out.println("newpath==" + newPath);
 
         System.out.println(path.toString());
     }

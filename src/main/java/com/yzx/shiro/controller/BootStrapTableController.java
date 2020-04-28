@@ -11,13 +11,13 @@ public class BootStrapTableController {
 
     @ApiOperation(value = "跳转到table 页面")
     @RequestMapping("/toTablePage")
-    public String toTablePage(Model model){
+    public String toTablePage(Model model) {
         return "bootstrap-table/table-demo1";
     }
 
     @ApiOperation(value = "跳转到table 页面")
     @RequestMapping("/toTablePage2")
-    public String toTablePage2(Model model){
+    public String toTablePage2(Model model) {
         return "bootstrap-table/table-demo2";
     }
 }

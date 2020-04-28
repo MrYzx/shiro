@@ -20,14 +20,14 @@ public class MyTest {
     public void testString() throws UnsupportedEncodingException {
         String a = "我爱你";
         System.out.println(a.getBytes());
-        String b = new String(a.getBytes("utf-8"),"utf-8");
-        System.out.println("bb==="+b);
+        String b = new String(a.getBytes("utf-8"), "utf-8");
+        System.out.println("bb===" + b);
     }
 
     @Test
-    public void testOs(){
+    public void testOs() {
         String aa = System.getProperty("os.name").toLowerCase();
-        System.out.println("aa=="+aa);
+        System.out.println("aa==" + aa);
     }
 
     @Test
@@ -36,9 +36,9 @@ public class MyTest {
         sysUser.setUserName("lisi");
         Class clazz = SysUser.class;
         Field[] field = clazz.getDeclaredFields();
-        for(Field field1 : field){
+        for (Field field1 : field) {
             field1.setAccessible(true); //设置私有属性的获取为true
-            System.out.println("filed=="+field1.get(sysUser));
+            System.out.println("filed==" + field1.get(sysUser));
         }
     }
 
@@ -72,7 +72,7 @@ public class MyTest {
                 Cell cell = row.getCell(j);
                 //调用下面的方法
                 String value = getCellStringValue(cell);
-                if(value.length() >2){
+                if (value.length() > 2) {
                     System.out.println(value);
                 }
             }
@@ -81,6 +81,7 @@ public class MyTest {
 
     /**
      * Excle 中对单元格的操作
+     *
      * @param cell
      * @return
      */
@@ -89,8 +90,8 @@ public class MyTest {
         switch (cell.getCellType()) {//获取单个单元格的类型
             case Cell.CELL_TYPE_STRING://字符串类型
                 cellValue = cell.getStringCellValue();
-                if(cellValue.trim().equals("") || cellValue.trim().length()<=0)
-                    cellValue=" ";
+                if (cellValue.trim().equals("") || cellValue.trim().length() <= 0)
+                    cellValue = " ";
                 break;
             case Cell.CELL_TYPE_NUMERIC://数值类型
                 cellValue = String.valueOf(cell.getNumericCellValue());
@@ -100,7 +101,7 @@ public class MyTest {
                 cellValue = String.valueOf(cell.getNumericCellValue());
                 break;
             case Cell.CELL_TYPE_BLANK://空单元格
-                cellValue=" ";
+                cellValue = " ";
                 break;
             case Cell.CELL_TYPE_BOOLEAN: //布尔
                 break;

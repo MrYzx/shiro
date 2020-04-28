@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 @RabbitListener(queues = RabbitConfig.QUEUE_A)
 public class MsgReceiver {
-
+    //设置日志
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    //涉资处理器
     @RabbitHandler
     public void process(String content) {
         logger.info("接收处理队列A当中的消息： " + content);

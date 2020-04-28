@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 用户的授权Controller
+ *
  * @author:yzx
  * @date:2019/11/15 23:42
  * @description:xxxx
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/yzx/com/authorization")
 public class AuthorizationController {
 
-   @RequestMapping("/think")
-   public String think(){
+    @RequestMapping("/think")
+    public String think() {
 
-       return "";
-   }
+        return "";
+    }
 
 }

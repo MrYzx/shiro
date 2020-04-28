@@ -19,12 +19,12 @@ public class ComTest {
         System.out.println(Arrays.asList(str2));
         Collection<String> clist = Collections.unmodifiableList(list);
         //clist.add("aa");
-        System.out.println("clist===="+clist);
+        System.out.println("clist====" + clist);
         List list2 = Stream.of(str2).collect(Collectors.toList());
-        System.out.println("lsit2==="+list2);
+        System.out.println("lsit2===" + list2);
 
         List list3 = new ArrayList<>();
-        Collections.addAll(list3,str2);
-        System.out.println("list3=="+list3);
+        Collections.addAll(list3, str2);
+        System.out.println("list3==" + list3);
     }
 }

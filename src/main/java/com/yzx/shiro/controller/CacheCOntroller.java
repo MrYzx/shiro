@@ -22,10 +22,10 @@ public class CacheCOntroller {
 
     @RequestMapping("/testCache")
     @ResponseBody
-    public String getUser(){
+    public String getUser() {
         User user = userService.findUser("1");
         Cache cache = cacheManager.getCache("myCache");
-        User user1 = cache.get("id",User.class);
+        User user1 = cache.get("id", User.class);
         return "cache success";
     }
 }

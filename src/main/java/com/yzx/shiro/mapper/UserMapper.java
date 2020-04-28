@@ -23,5 +23,5 @@ public interface UserMapper extends Mapper<User> {
 
     void updateUser(User user);
 
-    User getUserByCall(Map<String,Object> map);
+    User getUserByCall(Map<String, Object> map);
 }

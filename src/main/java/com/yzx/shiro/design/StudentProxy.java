@@ -5,7 +5,7 @@ public class StudentProxy implements Person {
     private Student student;
 
     public StudentProxy(Student student) {
-        if(student.getClass() == Student.class){
+        if (student.getClass() == Student.class) {
             this.student = student;
         }
     }

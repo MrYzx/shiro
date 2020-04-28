@@ -1,13 +1,13 @@
 package com.yzx.shiro.design;
 
-public class ToosImpl implements Tools.Function,Tools {
+public class ToosImpl implements Tools.Function, Tools {
 
     @Override
     public void price() {
         MyTest2 myTest2 = new MyTest2();
         myTest2.setAge("111");
         System.out.println("价格。。。。");
-        System.out.println("age==="+myTest2.getAge());
+        System.out.println("age===" + myTest2.getAge());
     }
 
     @Override
@@ -20,7 +20,7 @@ public class ToosImpl implements Tools.Function,Tools {
         System.out.println("如何使用。。。。");
     }
 
-    class MyTest2{
+    class MyTest2 {
         private String name;
         private String age;
 

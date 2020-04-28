@@ -3,14 +3,14 @@
 <mapper namespace="com.yzx.shiro.mapper.UserMapper">
     <!--结果集的映射-->
     <resultMap id="BaseResultMap" type="com.yzx.shiro.beans.User">
-        <id column="id" jdbcType="VARCHAR" property="id" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="sex" jdbcType="VARCHAR" property="sex" />
-        <result column="age" jdbcType="VARCHAR" property="age" />
-        <result column="tel" jdbcType="VARCHAR" property="tel" />
-        <result column="avaliable" jdbcType="BOOLEAN" property="avaliable" />
-        <result column="role" jdbcType="VARCHAR" property="role" />
-        <result column="password" jdbcType="VARCHAR" property="password" />
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="age" jdbcType="VARCHAR" property="age"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="avaliable" jdbcType="BOOLEAN" property="avaliable"/>
+        <result column="role" jdbcType="VARCHAR" property="role"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
     </resultMap>
 
     <delete id="deleteUser" parameterType="java.lang.String">
@@ -28,9 +28,9 @@
     <!--通过mybatis 的方式调用MySQL中的存储过程 -->
     <!--注意：调用的参数类型为OUT 或者INOUT 时，需要添加 jdbcType 类型-->
     <select id="getUserByCall" parameterType="java.util.Map" resultMap="BaseResultMap" statementType="CALLABLE">
-         {call PRO_GETNAME(
-          #{userId,mode=IN},
-          #{userName,mode=OUT,jdbcType=VARCHAR})
-          }
+        {call PRO_GETNAME(
+        #{userId,mode=IN},
+        #{userName,mode=OUT,jdbcType=VARCHAR})
+        }
     </select>
 </mapper>

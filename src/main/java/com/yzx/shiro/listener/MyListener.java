@@ -8,9 +8,9 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
- *  application对象是服务器启动时创建， 服务器关闭时销毁。
- *  reqeust.getSession();它是用于获取session
- *  请求发生，request对象创建，响应产生request对象销毁
+ * application对象是服务器启动时创建， 服务器关闭时销毁。
+ * reqeust.getSession();它是用于获取session
+ * 请求发生，request对象创建，响应产生request对象销毁
  */
 //@WebListener  java web 中监听器的注解
 public class MyListener implements ServletRequestListener {

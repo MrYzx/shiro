@@ -32,12 +32,12 @@ public class NIOTest2 {
         charBuffer.put("你好呀");
         charBuffer.flip();
         ByteBuffer byteBuffer = ce.encode(charBuffer);
-        for(int i = 0;i< 6;i++){
+        for (int i = 0; i < 6; i++) {
             System.out.println(byteBuffer.get());
         }
         byteBuffer.flip();
         CharBuffer charBuffer1 = cd.decode(byteBuffer);
-        System.out.println("ddd==="+charBuffer1.toString());
+        System.out.println("ddd===" + charBuffer1.toString());
 
     }
 
@@ -46,26 +46,26 @@ public class NIOTest2 {
     @Test
     public void test5() throws IOException {
 
-        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\1.txt","rw");
+        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\1.txt", "rw");
 
         FileChannel fileChannel = randomAccessFile.getChannel();
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(5);
         ByteBuffer byteBuffer1 = ByteBuffer.allocate(1024);
 
-        ByteBuffer[] buffers = {byteBuffer,byteBuffer1};
+        ByteBuffer[] buffers = {byteBuffer, byteBuffer1};
         fileChannel.read(buffers);
 
         //分散读取
-        for(ByteBuffer buffer : buffers){
+        for (ByteBuffer buffer : buffers) {
             buffer.flip();
         }
-        System.out.println("buff1=="+new String(buffers[0].array(),0,buffers[0].limit()));
-        System.out.println("buff2=="+new String(buffers[1].array(),0,buffers[1].limit()));
+        System.out.println("buff1==" + new String(buffers[0].array(), 0, buffers[0].limit()));
+        System.out.println("buff2==" + new String(buffers[1].array(), 0, buffers[1].limit()));
 
         System.out.println("----------------");
         //聚集写入
-        RandomAccessFile randomAccessFile1 = new RandomAccessFile("D:\\2.txt","rw");
+        RandomAccessFile randomAccessFile1 = new RandomAccessFile("D:\\2.txt", "rw");
         FileChannel fileChannel1 = randomAccessFile1.getChannel();
         fileChannel1.write(buffers);
 
@@ -81,7 +81,7 @@ public class NIOTest2 {
         FileChannel outChannel = FileChannel.open(Paths.get("D:\\1b.xlsx"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
 
         //inChannel.transferTo(0,inChannel.size(),outChannel);
-        outChannel.transferFrom(inChannel,0,inChannel.size());
+        outChannel.transferFrom(inChannel, 0, inChannel.size());
 
         inChannel.close();
         outChannel.close();
@@ -93,8 +93,8 @@ public class NIOTest2 {
         FileChannel inChannel = FileChannel.open(Paths.get("d:/1.mkv"), StandardOpenOption.READ);
         FileChannel outChannel = FileChannel.open(Paths.get("d:/2.mkv"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
 
-        MappedByteBuffer inMap = inChannel.map(MapMode.READ_ONLY,0,inChannel.size());
-        MappedByteBuffer outMap = outChannel.map(MapMode.READ_WRITE,0,inChannel.size());
+        MappedByteBuffer inMap = inChannel.map(MapMode.READ_ONLY, 0, inChannel.size());
+        MappedByteBuffer outMap = outChannel.map(MapMode.READ_WRITE, 0, inChannel.size());
 
         byte dest[] = new byte[inMap.limit()];
         inMap.get(dest);//读取数据到缓存
@@ -112,51 +112,46 @@ public class NIOTest2 {
         FileOutputStream fos = null;
         ByteChannel inc = null;
         ByteChannel ouc = null;
-        try{
-           ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-           fis = new FileInputStream("D:\\bbb.xlsx");
-           fos = new FileOutputStream("D:\\1b.xlsx");
-           inc = fis.getChannel();
-           ouc = fos.getChannel();
-           while ((inc.read(byteBuffer))!= -1){
-               byteBuffer.flip();
-               ouc.write(byteBuffer);
-               byteBuffer.clear();
-           }
-        }catch (Exception e){
-           e.printStackTrace();
-        }finally {
-            if(ouc != null){
+        try {
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+            fis = new FileInputStream("D:\\bbb.xlsx");
+            fos = new FileOutputStream("D:\\1b.xlsx");
+            inc = fis.getChannel();
+            ouc = fos.getChannel();
+            while ((inc.read(byteBuffer)) != -1) {
+                byteBuffer.flip();
+                ouc.write(byteBuffer);
+                byteBuffer.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ouc != null) {
                 ouc.close();
             }
-            if(inc != null) {
+            if (inc != null) {
                 inc.close();
             }
-            if(fos != null) {
+            if (fos != null) {
                 fos.close();
             }
-            if(fis != null) {
+            if (fis != null) {
                 fis.close();
             }
         }
     }
 
 
-
-
-
-
-
     @Test
-    public void nioTest(){
+    public void nioTest() {
         String a = "abcde";
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         byteBuffer.put(a.getBytes());
         byteBuffer.flip();
-        for(int i=0;i<=3;i++){
+        for (int i = 0; i <= 3; i++) {
             byte[] dst = new byte[3];
-            byteBuffer.get(dst,0,2);
-            System.out.println("获取数据=="+new String(dst,0,2));
+            byteBuffer.get(dst, 0, 2);
+            System.out.println("获取数据==" + new String(dst, 0, 2));
             byteBuffer.rewind();
         }
         byteBuffer.clear();

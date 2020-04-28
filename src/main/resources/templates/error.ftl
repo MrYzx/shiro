@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-   erro page
+erro page
 </body>
 </html>

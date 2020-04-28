@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PDFController {
 
     @RequestMapping("/showPdf")
-    public String pdfShow(){
+    public String pdfShow() {
         System.out.println("pdf 的显示");
         return "";
     }

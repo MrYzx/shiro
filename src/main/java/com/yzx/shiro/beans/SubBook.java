@@ -1,6 +1,6 @@
 package com.yzx.shiro.beans;
 
-public class SubBook<T,E,h> extends Book<String>{
+public class SubBook<T, E, h> extends Book<String> {
 
     private T book;
     private T[] arr;

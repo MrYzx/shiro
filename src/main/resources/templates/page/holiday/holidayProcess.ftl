@@ -8,8 +8,8 @@
 <body>
 <#--<a onclick="downLoad()">下载图片</a>-->
 <#--<a href="/com/yzx/holiday/viewProcessImg">流程图查看</a>-->
-   <div style="text-align: center;">
-       <img src="/com/yzx/holiday/viewProcessImg2"/>
-   </div>
+<div style="text-align: center;">
+    <img src="/com/yzx/holiday/viewProcessImg2"/>
+</div>
 </body>
 </html>

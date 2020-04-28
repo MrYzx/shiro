@@ -16,7 +16,7 @@ public @interface ModelCheck {
     BookEnum[] value() default BookEnum.BOOK1;
 
     //定义一个其它类型的变量
-    String meaning () default "";
+    String meaning() default "";
 
     //定义注解中的常量值，可以在其注解中直接使用
     String NAME = "name";

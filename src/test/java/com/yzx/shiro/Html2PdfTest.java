@@ -15,7 +15,7 @@ import java.io.OutputStream;
 @SpringBootTest
 public class Html2PdfTest {
     @Test
-    public void testHtml2Pdf() throws Exception{
+    public void testHtml2Pdf() throws Exception {
         //指定PDF的存放路径
         String outputFile = "d:/test.pdf";
         OutputStream os = new FileOutputStream(outputFile);
@@ -38,9 +38,9 @@ public class Html2PdfTest {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "    <img src=\"login/2.png\" style=\"width:160px;height:80px;\"></img>\n" +
+                "    <img src=\"https://www.baidu.com/img/pc_2e4ef5c71eaa9e3a3ed7fa3a388ec733.png\" style=\"width:80px;height:80px;\"></img>\n" +
                 "    <br/>\n" +
-                "    <br/> <font style=\"color:red;\">建設銀行</font>\n" +
+                "    <br/> <div style=\"color:red;text-align: center;\"><font style=\"color:red;text-align: center;\">建设银行</font></div>\n" +
                 "    <br/> 12345678901\n" +
                 "    <br/> 1000RMB\n" +
                 "    <br/> 姓名:李四\n" +

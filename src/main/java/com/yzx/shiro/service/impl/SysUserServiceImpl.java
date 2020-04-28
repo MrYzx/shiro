@@ -27,14 +27,14 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public Map<String,Object> userList(int page, int limit) {
-        Map<String,Object> map = new HashMap<>(16);
+    public Map<String, Object> userList(int page, int limit) {
+        Map<String, Object> map = new HashMap<>(16);
         int count = sysUserMapper.selectCount(new SysUser());
-        PageHelper.startPage(page , limit);
-        List<SysUser> list =sysUserMapper.selectAll();
+        PageHelper.startPage(page, limit);
+        List<SysUser> list = sysUserMapper.selectAll();
         //得到分页的结果对象
-        map.put("list",list);
-        map.put("total",count);
+        map.put("list", list);
+        map.put("total", count);
         return map;
     }
 

@@ -22,9 +22,10 @@ public class ValidateCodeUtil {
      * TYPE_ONLY_UPPER	纯大写字母
      * TYPE_ONLY_LOWER	纯小写字母
      * TYPE_NUM_AND_UPPER	数字和大写字母
+     *
      * @return specCaptcha
      */
-    public static SpecCaptcha getNumOrWordCode(){
+    public static SpecCaptcha getNumOrWordCode() {
         SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 4);// 三个参数分别为宽、高、位数
         specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));  // 有默认字体，可以不用设置
         //specCaptcha.setFont(Captcha.FONT_8);// 设置字体
@@ -34,9 +35,10 @@ public class ValidateCodeUtil {
 
     /**
      * 计算类型的验证码
+     *
      * @return
      */
-    public static ArithmeticCaptcha getArithmeticCode(){
+    public static ArithmeticCaptcha getArithmeticCode() {
         // 2.算术类型的验证码
         ArithmeticCaptcha captcha = new ArithmeticCaptcha(130, 48);
         captcha.setLen(3);  // 几位数运算，默认是两位

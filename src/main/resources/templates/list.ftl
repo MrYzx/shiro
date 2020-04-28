@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-      user List<br/>
-      <#list users as user>
-           ${user.name}<br/>
-      </#list>
+user List<br/>
+<#list users as user>
+    ${user.name}<br/>
+</#list>
 </body>
 </html>

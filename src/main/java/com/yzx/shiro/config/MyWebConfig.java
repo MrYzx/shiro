@@ -33,6 +33,7 @@ public class MyWebConfig implements WebMvcConfigurer {
         registration.setOrder(2);
         return registration;
     }
+
     @Bean
     public MyTestFiler myTestFiler() {
         //通过构造方法的方式注入对象
@@ -43,8 +44,8 @@ public class MyWebConfig implements WebMvcConfigurer {
      * 拦截器信息的注册
      * 1.通过 implements WebMvcConfigurer 的方式
      * 2.通过 extends WebMvcConfigurationSupport 这种方式会导致静态资源无法直接访问
-     *   解决办法  重写 addResourceHandlers 方法；
-     *   registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+     * 解决办法  重写 addResourceHandlers 方法；
+     * registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

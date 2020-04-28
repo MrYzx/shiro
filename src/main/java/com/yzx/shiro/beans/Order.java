@@ -5,11 +5,11 @@ import com.yzx.shiro.constant.BookEnum;
 
 public class Order {
 
-    @ModelCheck({BookEnum.BOOK,BookEnum.BOOK1,BookEnum.BOOK2})
+    @ModelCheck({BookEnum.BOOK, BookEnum.BOOK1, BookEnum.BOOK2})
     private String id;
-    @ModelCheck(value = BookEnum.BOOK1,meaning = "名字")
+    @ModelCheck(value = BookEnum.BOOK1, meaning = "名字")
     private String name;
-    @ModelCheck(value = BookEnum.BOOK2,meaning = ModelCheck.NAME)
+    @ModelCheck(value = BookEnum.BOOK2, meaning = ModelCheck.NAME)
     private String price;
 
     public String getId() {

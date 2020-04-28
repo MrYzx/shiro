@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="/statics/css/font-awesome.css" />
+<link rel="stylesheet" href="/statics/css/font-awesome.css"/>
 <link rel="stylesheet" href="/statics/layui/css/layui.css">
-<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="/statics/bootstrap/bootstraptable/bootstrap-table.css">
 <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>

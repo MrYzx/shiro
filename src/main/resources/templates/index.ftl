@@ -32,10 +32,10 @@
 <#--    <iframe src="http://localhost:8080/statics/PDF.js/web/viewer.html?file=/statics/PDF.js/web/compressed.tracemonkey-pldi-09.pdf"  width="1024" height="700"
 
     </iframe>-->
-<iframe src="http://localhost:8080/statics/PDF.js/web/viewer.html?file=/com/yzx/showPdf"  width="1024" height="700">
+<iframe src="http://localhost:8080/statics/PDF.js/web/viewer.html?file=/com/yzx/showPdf" width="1024" height="700">
 </iframe>
 
-<iframe src="/com/yzx/showPdf"  width="1024" height="700">
+<iframe src="/com/yzx/showPdf" width="1024" height="700">
 </iframe>
 <#-- <div id="_div_embed" class="x-hidden" align="center" style="vertical-align: middle;width: 1000px;height: 500px;">
              <embed id="_embed" style="vertical-align: middle;margin:10px;width: 1000px;height: 500px;"type="application/pdf">

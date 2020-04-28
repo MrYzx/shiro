@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 处理检测到的异常信息
+ *
  * @author:yzx
  * @date:2019/11/16 17:33
  * @description: 抓取异常信息，并且跳转到指定的页面

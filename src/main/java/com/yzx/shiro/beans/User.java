@@ -18,6 +18,7 @@ public class User implements Serializable {
 
     /**
      * 返回盐值
+     *
      * @return
      */
     public String getSalt() {

@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 @ConfigurationProperties(prefix = "permission-config")
 public class PermsMapConfig {
-    private List<Map<String,String>> perms;
+    private List<Map<String, String>> perms;
 
     public List<Map<String, String>> getPerms() {
         return perms;

@@ -29,34 +29,34 @@ public class NIOTest {
         FileOutputStream fileOutputStream = new FileOutputStream("D:\\cc.xlsx");
         FileChannel fileIn = fileInputStream.getChannel();
         FileChannel fileOut = fileOutputStream.getChannel();
-        fileDeal(fileIn,fileOut);
+        fileDeal(fileIn, fileOut);
         System.out.println("文件读写结束！");
     }
 
-    public static void dump(ReadableByteChannel src, WritableByteChannel dest){
+    public static void dump(ReadableByteChannel src, WritableByteChannel dest) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        try{
+        try {
             ReadableByteChannel srcCH = src;
             WritableByteChannel destCH = dest;
-            while (srcCH.read(byteBuffer) != -1){
+            while (srcCH.read(byteBuffer) != -1) {
                 byteBuffer.flip();
                 destCH.write(byteBuffer);
                 byteBuffer.clear();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static  void fileDeal(FileChannel inFile,FileChannel outFile){
-        ByteBuffer buffer  = ByteBuffer.allocate(1024);//设置缓存的大小
-        try{
-           while ((inFile.read(buffer)) != -1) {
-               buffer.flip();//将positon 设置为0 ，将limit 设置围殴position 之前的位置
-               outFile.write(buffer);
-               buffer.clear();//将position 设置为0 limit 设置为capacity 的大小
-           }
-        }catch (Exception e){
+    public static void fileDeal(FileChannel inFile, FileChannel outFile) {
+        ByteBuffer buffer = ByteBuffer.allocate(1024);//设置缓存的大小
+        try {
+            while ((inFile.read(buffer)) != -1) {
+                buffer.flip();//将positon 设置为0 ，将limit 设置围殴position 之前的位置
+                outFile.write(buffer);
+                buffer.clear();//将position 设置为0 limit 设置为capacity 的大小
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

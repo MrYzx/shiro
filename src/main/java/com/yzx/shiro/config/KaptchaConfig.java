@@ -33,7 +33,7 @@ public class KaptchaConfig {
         // 设置字体尺寸
         properties.setProperty("kaptcha.textproducer.font.size", "32");
         // 设置图片样式
-        properties.setProperty("kaptcha.obscurificator.impl","com.google.code.kaptcha.impl.ShadowGimpy");
+        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.ShadowGimpy");
         // 设置session key
         properties.setProperty("kaptcha.session.key", SESSION_KEY);
         // 设置验证码长度

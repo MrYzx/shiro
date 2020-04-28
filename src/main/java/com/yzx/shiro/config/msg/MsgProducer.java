@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 
 @Component
-public class MsgProducer implements RabbitTemplate.ConfirmCallback{
+public class MsgProducer implements RabbitTemplate.ConfirmCallback {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -25,6 +25,7 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback{
 
     /**
      * 构造方法注入rabbitTemplate
+     *
      * @param rabbitTemplate
      */
     @Autowired
@@ -35,6 +36,7 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback{
 
     /**
      * 消息的发送
+     *
      * @param content
      */
     public void sendMsg(String content) {
@@ -44,7 +46,8 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback{
     }
 
     /**
-     *  消息队列的回调函数
+     * 消息队列的回调函数
+     *
      * @param correlationData
      * @param ack
      * @param cause

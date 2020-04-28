@@ -7,10 +7,11 @@ public class Singletion1 {
 
     private static Singletion1 singletion1 = null;
 
-    private Singletion1(){}
+    private Singletion1() {
+    }
 
-    public static Singletion1 getInstance(){
-        if(singletion1==null){
+    public static Singletion1 getInstance() {
+        if (singletion1 == null) {
             singletion1 = new Singletion1();
         }
         return singletion1;

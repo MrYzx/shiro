@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * 对Swagger2的配置信息
+ *
  * @author yzx
  */
 @Configuration
@@ -25,6 +26,7 @@ import java.util.List;
 public class Swagger2Config {
     /**
      * 在项目启动时初始化 Docket 对象
+     *
      * @return Docket
      */
     @Bean
@@ -37,8 +39,8 @@ public class Swagger2Config {
         //构建Docket 对象
         return new Docket(DocumentationType.SWAGGER_2)
                 .globalOperationParameters(pars)//设置全局变量
-                .globalResponseMessage(RequestMethod.POST,customerResponseMessage())//配置响应出错时对应的描述
-                .globalResponseMessage(RequestMethod.POST,customerResponseMessage())
+                .globalResponseMessage(RequestMethod.POST, customerResponseMessage())//配置响应出错时对应的描述
+                .globalResponseMessage(RequestMethod.POST, customerResponseMessage())
                 .apiInfo(apiInfo())//设置swaager 上显示的基本 Api 信息
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.yzx.shiro"))// 配置自己项目中引用swaager注解的路径
@@ -48,6 +50,7 @@ public class Swagger2Config {
 
     /**
      * 设置swagger 上的基本信息
+     *
      * @return ApiInfo 对象
      */
     private ApiInfo apiInfo() {
@@ -61,7 +64,8 @@ public class Swagger2Config {
     }
 
     /**
-     *  设置请求响应返回的状态码对应的值
+     * 设置请求响应返回的状态码对应的值
+     *
      * @return list
      */
     private List<ResponseMessage> customerResponseMessage() {

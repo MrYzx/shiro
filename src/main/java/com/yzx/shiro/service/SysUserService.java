@@ -10,7 +10,7 @@ import java.util.Map;
 public interface SysUserService {
     public void addUser(SysUser sysUser);
 
-    Map<String,Object> userList (int page, int limit);
+    Map<String, Object> userList(int page, int limit);
 
     int deleteUser(SysUser sysUser);
 

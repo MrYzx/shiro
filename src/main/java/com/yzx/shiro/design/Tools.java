@@ -4,8 +4,9 @@ public interface Tools {
     public void howUse();
 
     //
-    interface Function{
+    interface Function {
         void price();
+
         void size();
     }
 }

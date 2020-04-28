@@ -7,36 +7,36 @@
     <#include "common.ftl">
 </head>
 <body class="layui-layout-body">
-    <div class="layui-layout layui-layout-admin">
-        <#-- layui 头部模块 -->
-        <div class="layui-header">
-            <div class="layui-logo"><i class="layui-icon layui-icon-release" style="font-size: 30px; color: #fff1fd;"></i>
-                运营后台管理系统<a href="/com/yzx/bootstrapTable/toTablePage2">table 页面</a>
-            </div>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item" style="width: 120px;">
-                    <a href="javascript:;">
-                        个人中心
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd><a id="userInfo">基本资料<span class="layui-badge-dot layui-bg-orange" /></a></dd>
-                        <dd><a href="/logout">退出</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item" style="width: 120px;">
-                    <a href="/com/yzx/index">大厅首页</a>
-                </li>
-                <li class="layui-nav-item">
-                    <@shiro.user>
-                        欢迎【<@shiro.principal property="userName"/>】
-                    </@shiro.user>
-                </li>
-            </ul>
+<div class="layui-layout layui-layout-admin">
+    <#-- layui 头部模块 -->
+    <div class="layui-header">
+        <div class="layui-logo"><i class="layui-icon layui-icon-release" style="font-size: 30px; color: #fff1fd;"></i>
+            运营后台管理系统<a href="/com/yzx/bootstrapTable/toTablePage2">table 页面</a>
         </div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" style="width: 120px;">
+                <a href="javascript:;">
+                    个人中心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a id="userInfo">基本资料<span class="layui-badge-dot layui-bg-orange"/></a></dd>
+                    <dd><a href="/logout">退出</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" style="width: 120px;">
+                <a href="/com/yzx/index">大厅首页</a>
+            </li>
+            <li class="layui-nav-item">
+                <@shiro.user>
+                    欢迎【<@shiro.principal property="userName"/>】
+                </@shiro.user>
+            </li>
+        </ul>
+    </div>
 
-        <#-- layui 侧边栏模块 -->
-        <div class="layui-side layui-bg-black">
+    <#-- layui 侧边栏模块 -->
+    <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧垂直导航区域-->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
@@ -48,15 +48,20 @@
                                class="site-demo-active" data-type="tabAdd">用户管理</a></dd>
                         <dd><a href="javascript:;" data-id="2" data-title="请假管理" data-url="/com/yzx/holiday/ListPage"
                                class="site-demo-active" data-type="tabAdd">请假管理</a></dd>
-                        <dd><a href="javascript:;" data-id="3" data-title="请假流程图" data-url="/com/yzx/holiday/viewHolidayImg"
+                        <dd><a href="javascript:;" data-id="3" data-title="请假流程图"
+                               data-url="/com/yzx/holiday/viewHolidayImg"
                                class="site-demo-active" data-type="tabAdd">请假流程图</a></dd>
-                        <dd><a href="javascript:;" data-id="4" data-title="请假记录" data-url="/com/yzx/holiday/holidayHistory"
+                        <dd><a href="javascript:;" data-id="4" data-title="请假记录"
+                               data-url="/com/yzx/holiday/holidayHistory"
                                class="site-demo-active" data-type="tabAdd">请假记录</a></dd>
-                        <dd><a href="javascript:;" data-id="5" data-title="请假评论" data-url="/com/yzx/holiday/getProcessComments"
+                        <dd><a href="javascript:;" data-id="5" data-title="请假评论"
+                               data-url="/com/yzx/holiday/getProcessComments"
                                class="site-demo-active" data-type="tabAdd">请假评论</a></dd>
-                        <dd><a href="javascript:;" data-id="6" data-title="激活请假流程" data-url="/com/yzx/holiday/activeOrSuspend"
+                        <dd><a href="javascript:;" data-id="6" data-title="激活请假流程"
+                               data-url="/com/yzx/holiday/activeOrSuspend"
                                class="site-demo-active" data-type="tabAdd">激活请假流程</a></dd>
-                        <dd><a href="javascript:;" data-id="7" data-title="挂起请假流程" data-url="/com/yzx/holiday/activeOrSuspend"
+                        <dd><a href="javascript:;" data-id="7" data-title="挂起请假流程"
+                               data-url="/com/yzx/holiday/activeOrSuspend"
                                class="site-demo-active" data-type="tabAdd">挂起请假流程</a></dd>
                     </dl>
                 </li>
@@ -65,15 +70,20 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-id="2" data-title="请假管理" data-url="/com/yzx/holiday2/ListPage"
                                class="site-demo-active" data-type="tabAdd">请假管理</a></dd>
-                        <dd><a href="javascript:;" data-id="3" data-title="请假流程图2" data-url="/com/yzx/holiday2/viewProcessImg2"
+                        <dd><a href="javascript:;" data-id="3" data-title="请假流程图2"
+                               data-url="/com/yzx/holiday2/viewProcessImg2"
                                class="site-demo-active" data-type="tabAdd">请假流程图2</a></dd>
-                        <dd><a href="javascript:;" data-id="4" data-title="请假记录" data-url="/com/yzx/holiday2/holidayHistory"
+                        <dd><a href="javascript:;" data-id="4" data-title="请假记录"
+                               data-url="/com/yzx/holiday2/holidayHistory"
                                class="site-demo-active" data-type="tabAdd">请假记录</a></dd>
-                        <dd><a href="javascript:;" data-id="5" data-title="请假评论" data-url="/com/yzx/holiday2/getProcessComments"
+                        <dd><a href="javascript:;" data-id="5" data-title="请假评论"
+                               data-url="/com/yzx/holiday2/getProcessComments"
                                class="site-demo-active" data-type="tabAdd">请假评论</a></dd>
-                        <dd><a href="javascript:;" data-id="6" data-title="激活请假流程" data-url="/com/yzx/holiday2/activeOrSuspend"
+                        <dd><a href="javascript:;" data-id="6" data-title="激活请假流程"
+                               data-url="/com/yzx/holiday2/activeOrSuspend"
                                class="site-demo-active" data-type="tabAdd">激活请假流程</a></dd>
-                        <dd><a href="javascript:;" data-id="7" data-title="挂起请假流程" data-url="/com/yzx/holiday2/activeOrSuspend"
+                        <dd><a href="javascript:;" data-id="7" data-title="挂起请假流程"
+                               data-url="/com/yzx/holiday2/activeOrSuspend"
                                class="site-demo-active" data-type="tabAdd">挂起请假流程</a></dd>
                     </dl>
                 </li>
@@ -92,7 +102,8 @@
                         <dd><a href="javascript:;" data-id="2" data-title="接口管理" data-url="/swagger-ui.html"
                                class="site-demo-active" data-type="tabAdd">接口管理</a>
                         </dd>
-                        <dd><a href="javascript:;" data-id="3" data-title="支付API设置" class="site-demo-active" data-url="index.php?&a=adminList" data-type="tabAdd">支付API设置</a></dd>
+                        <dd><a href="javascript:;" data-id="3" data-title="支付API设置" class="site-demo-active"
+                               data-url="index.php?&a=adminList" data-type="tabAdd">支付API设置</a></dd>
                         <dd><a href="javascript:;">公告设置</a></dd>
                         <dd><a href="javascript:;">控制台</a></dd>
                 </li>
@@ -100,22 +111,22 @@
         </div>
     </div>
 
-        <!--tab标签-->
-        <div class="layui-tab" lay-filter="demo" lay-allowclose="true" style="margin-left: 200px;">
-            <ul class="layui-tab-title">
-                <li class="layui-this">首页</li>
-            </ul>
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">首页内容...</div>
-            </div>
-        </div>
-
-        <#-- layui 页脚模块-->
-        <div class="layui-footer">
-            <!-- 底部固定区域 -->
-            © layui.com - yinzhixiong 学习
+    <!--tab标签-->
+    <div class="layui-tab" lay-filter="demo" lay-allowclose="true" style="margin-left: 200px;">
+        <ul class="layui-tab-title">
+            <li class="layui-this">首页</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">首页内容...</div>
         </div>
     </div>
+
+    <#-- layui 页脚模块-->
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - yinzhixiong 学习
+    </div>
+</div>
 <script>
     layui.use(['element', 'layer', 'jquery'], function () {
         var element = layui.element;
@@ -169,7 +180,7 @@
 
         function FrameWH() {
             var h = $(window).height();
-            $("iframe").css("height",h+"px");
+            $("iframe").css("height", h + "px");
         }
     });
 

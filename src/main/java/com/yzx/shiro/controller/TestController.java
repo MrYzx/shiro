@@ -22,9 +22,9 @@ public class TestController {
 
     @RequestMapping("/main")
     @ApiOperation(value = "测试详情", notes = "用测试注意事项", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String getUserToMainPage(Model model){
+    public String getUserToMainPage(Model model) {
         Subject subject = SecurityUtils.getSubject();
-        model.addAttribute("user",((User)subject.getPrincipal()).getName());
+        model.addAttribute("user", ((User) subject.getPrincipal()).getName());
         return "page/main";
     }
 }

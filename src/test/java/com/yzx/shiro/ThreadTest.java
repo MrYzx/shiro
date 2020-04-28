@@ -15,8 +15,8 @@ public class ThreadTest extends Thread {
 
     @Override
     public void run() {
-        for (int i=0; i<10; i++) {
-            synchronized (ThreadTest.class){
+        for (int i = 0; i < 10; i++) {
+            synchronized (ThreadTest.class) {
                 System.out.println(getName() + ".." + i);
             }
         }

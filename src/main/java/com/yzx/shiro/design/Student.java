@@ -10,6 +10,6 @@ public class Student implements Person {
 
     @Override
     public void payMoney() {
-        System.out.println(stuName+"交学费50！");
+        System.out.println(stuName + "交学费50！");
     }
 }

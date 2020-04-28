@@ -19,7 +19,7 @@ public class Book<T> {
         return c;
     }
 
-    public void add(T like){
+    public void add(T like) {
         list.add(like);
     }
 

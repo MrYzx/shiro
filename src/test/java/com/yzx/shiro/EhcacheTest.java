@@ -33,16 +33,16 @@ public class EhcacheTest {
     }
 
     @Test
-    public void testUtils(){
+    public void testUtils() {
         List list = new ArrayList();
         list.add("aa");
         list.add("bb");
         list.add("cc");
 
-        String str = StringUtils.join(list,"-");
+        String str = StringUtils.join(list, "-");
         System.out.println(str);
 
-        String str2 = String.join("*",list);
+        String str2 = String.join("*", list);
         System.out.println(str2);
     }
 }

@@ -91,4 +91,4 @@ permission-config:
 logging:
   level:
     #mybatis 中对应的位置
-    com.yzx.shiro.mapper : debug
+    com.yzx.shiro.mapper: debug

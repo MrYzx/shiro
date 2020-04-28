@@ -5,11 +5,11 @@ package com.yzx.shiro.beans;
  */
 public class SysPermission {
 
-     private String pId;
-     private String permissionId;
-     private String description;
-     private String roleId;
-     private boolean avaliabled;
+    private String pId;
+    private String permissionId;
+    private String description;
+    private String roleId;
+    private boolean avaliabled;
 
     public SysPermission() {
     }

@@ -10,7 +10,7 @@ public class ProxyTest {
 
     //cglib代理的设置
     @Test
-    public void test3(){
+    public void test3() {
         //创建一个织入器
         Enhancer enhancer = new Enhancer();
         //设置父类
@@ -25,7 +25,7 @@ public class ProxyTest {
 
     //动态代理的设置
     @Test
-    public void test2(){
+    public void test2() {
         Student student = new Student("李思");
         //student.getClass().getInterfaces()  获取类的实现的接口
         //student.getClass().getClassLoader() 取得该Class对象的类装载器
@@ -36,7 +36,7 @@ public class ProxyTest {
 
     //静态代理的设置
     @Test
-    public void test(){
+    public void test() {
         Student student = new Student("张三");
         StudentProxy proxy = new StudentProxy(student);
         proxy.payMoney();

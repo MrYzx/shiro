@@ -21,9 +21,9 @@ public interface UserService {
 
     Integer updateUser(User user);
 
-    List<User> tkUserList(PageInfo pageInfo,User user);
+    List<User> tkUserList(PageInfo pageInfo, User user);
 
     User findUser(String id);
 
-    User getCallUser(Map<String,Object>map);
+    User getCallUser(Map<String, Object> map);
 }

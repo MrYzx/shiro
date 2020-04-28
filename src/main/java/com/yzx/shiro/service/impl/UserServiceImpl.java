@@ -56,10 +56,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> tkUserList(PageInfo pageInfo,User user) {
-        PageHelper.startPage(pageInfo.getPageNum(),pageInfo.getPageSize());
-        Example example =new Example(User.class);
-        Example.Criteria criteria= example.createCriteria();
+    public List<User> tkUserList(PageInfo pageInfo, User user) {
+        PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+        Example example = new Example(User.class);
+        Example.Criteria criteria = example.createCriteria();
         //criteria.andEqualTo("aac002",cca4Temp.getAac002());
         //条件查询
        /* if(!"".equals(cca4Temp.getAaa00y()) && cca4Temp.getAaa00y()!=null){//申请时间

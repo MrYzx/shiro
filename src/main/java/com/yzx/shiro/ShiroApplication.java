@@ -15,8 +15,8 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 public class ShiroApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ShiroApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ShiroApplication.class, args);
+    }
 
 }

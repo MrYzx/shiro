@@ -28,7 +28,7 @@ public class SysUser implements Serializable {
     }
 
     public SysUser(String userId, String userName, String password, String salt,
-                             String tel, boolean locked, String roleId) {
+                   String tel, boolean locked, String roleId) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
