@@ -292,7 +292,7 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.3</version>
+			<version>1.5</version>
 		</dependency>
 
 		<!-- html转换 PDF 的依赖 -->
